@@ -19,11 +19,11 @@ set -ex
 # copy built packages into a mounted volume
 cd ${WORKDIR}
 ## TODO @alainr - get the version from somewhere
-export VERSION=0.3
-cd ${WORKDIR}/cassandra-medusa/packaging
-make build-packages
-mv *.deb ${WORKDIR}/packages # TODO @alainr *.rpm too
+cd ${WORKDIR}/cassandra-medusa/
+dpkg-buildpackage -us -uc -b
+mv ../*.deb ${WORKDIR}/packages # TODO @alainr *.rpm too
 cd ${WORKDIR}
 
 # execute any provided command
 $@
+

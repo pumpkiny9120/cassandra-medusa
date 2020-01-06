@@ -19,6 +19,8 @@ ENV WORKDIR /usr/src/app
 RUN mkdir -p ${WORKDIR}
 WORKDIR ${WORKDIR}
 
+RUN echo "Acquire::http::Pipeline-Depth 0;" >> /etc/apt/apt.conf
+
 # install dependencies
 RUN apt-get update \
     && apt-get install -y \
@@ -26,14 +28,13 @@ RUN apt-get update \
         dh-python \
         python3-all \
         python3-all-dev \
-        dh-virtualenv \
+        python3-dev \
+        python-dev \
         python3-setuptools \
-        ruby \
-        ruby-dev \
-        rubygems \
-        build-essential \
-        rpm \
-    && gem install --no-document fpm
+        python3-venv \
+        dh-virtualenv \
+        build-essential debhelper devscripts equivs
 # Add entrypoint script
+
 COPY packaging/docker-build/docker-entrypoint.sh ${WORKDIR}
 ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]

@@ -23,7 +23,7 @@ prepare: clean
 
 deb: prepare
 	# possible to add --> --pre-install debian/preinstall.sh --post-install debian/postinstall.sh
-	fpm -s virtualenv -t deb -v $(VERSION) cassandra-medusa
+	fpm -s python -t deb setup.py
 
 #rpm: prepare
 	#fpm -s dir -t rpm -n cassandra-medusa -v $(VERSION) -C build
