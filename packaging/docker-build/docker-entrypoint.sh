@@ -17,13 +17,13 @@ set -ex
 
 # build Debian
 # copy built packages into a mounted volume
-cd ${WORKDIR}
-## TODO @alainr - get the version from somewhere
-cd ${WORKDIR}/cassandra-medusa/
+cd ${WORKDIR}/scripts
+./pre-build.sh
+
+cd ${WORKDIR}/cassandra-medusa
 dpkg-buildpackage -us -uc -b
-mv ../*.deb ${WORKDIR}/packages # TODO @alainr *.rpm too
+mv ../*.deb ${WORKDIR}/packages
 cd ${WORKDIR}
 
 # execute any provided command
 $@
-

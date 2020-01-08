@@ -21,7 +21,7 @@ export DH_VIRTUALENV_INSTALL_ROOT = /usr/share
 	dh $@ --with python-virtualenv
 
 override_dh_virtualenv:
-	dh_virtualenv --no-test --python /usr/bin/python3 --preinstall=setuptools==40.3.0 --builtin-venv
+	dh_virtualenv --python /usr/bin/python3 --preinstall=setuptools==40.3.0 --builtin-venv
 
 override_dh_strip:
 	dh_strip --no-automatic-dbgsym --exclude libssh2

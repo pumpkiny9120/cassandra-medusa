@@ -33,8 +33,11 @@ RUN apt-get update \
         python3-setuptools \
         python3-venv \
         dh-virtualenv \
-        build-essential debhelper devscripts equivs
-# Add entrypoint script
+        build-essential \
+        debhelper \
+        devscripts \
+        equivs
 
+# Add entrypoint script
 COPY packaging/docker-build/docker-entrypoint.sh ${WORKDIR}
 ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]
